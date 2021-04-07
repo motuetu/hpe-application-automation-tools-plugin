@@ -418,7 +418,7 @@ namespace HpToolsLauncher
             ITestSet targetTestSet = null;
             foreach (ITestSet ts in tsList)
             {
-                if (ts.Name.Equals(tsName, StringComparison.InvariantCultureIgnoreCase))
+                if (ts.Name.Equals(tsName, StringComparison.InvariantCultureIgnoreCase) && (ts.TestSetFolder.NodeID == tsFolder.NodeID))
                 {
                     targetTestSet = ts;
                     break;
