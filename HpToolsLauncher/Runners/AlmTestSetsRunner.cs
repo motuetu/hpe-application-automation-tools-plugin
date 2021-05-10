@@ -568,7 +568,7 @@ namespace HpToolsLauncher
         /// <param name="testSetList"></param>
         /// <param name="testSuiteName"></param>
         /// <returns>the target test set</returns>
-        public ITestSet GetTargetTestSet(List testSetList, string testSuiteName)
+        public ITestSet GetTargetTestSet(List testSetList, string testSuiteName, ITestSetFolder tsFolder)
         {
             ITestSet targetTestSet = null;
 
@@ -577,7 +577,7 @@ namespace HpToolsLauncher
                 foreach (ITestSet testSet in testSetList)
                 {
                     string tempName = testSet.Name;
-                    if (tempName.Equals(testSuiteName, StringComparison.InvariantCultureIgnoreCase))
+                    if (tempName.Equals(testSuiteName, StringComparison.InvariantCultureIgnoreCase) && testSet.TestSetFolder.NodeID == tsFolder.NodeID)
                     {
                         targetTestSet = testSet;
                         break;
@@ -1176,7 +1176,7 @@ namespace HpToolsLauncher
             ITestSet targetTestSet = null;
             try
             {
-                targetTestSet = GetTargetTestSet(testSetList, testSuiteName);
+                targetTestSet = GetTargetTestSet(testSetList, testSuiteName, tsFolder);
             }
             catch (Exception)
             {
